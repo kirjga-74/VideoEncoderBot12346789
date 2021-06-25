@@ -24,7 +24,7 @@ def help_message(app, message):
     
 @app.on_message(filters.incoming & filters.command(['start']))
 def start_message(app, message):
-    message.reply_text(f"Hi {message.from_user.mention()}\nI can encode Telegram files in x265. Made by @ToonsHub2006.", quote=True)
+    message.reply_text(f"Hi {message.from_user.mention()}\nI can encode Telegram files in x265. Made by @animeplex_op And @just_a_senpai.", quote=True)
     
 @app.on_message(filters.user(sudo_users) & filters.incoming & (filters.video | filters.document))
 def encode_video(app, message):
