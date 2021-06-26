@@ -36,7 +36,7 @@ def encode(filepath):
             video_opts = '-c:v copy -tag:v hvc1'
     else:
         # Transcode to h265 / hvc1
-        video_opts = '0 -c:v libx265 -pix_fmt yuv420p -s 854x480 -preset medium  -tune psnr -crf 32 -b:v 350k'
+        video_opts = 'c:v libx265 -crf 28 -pix_fmt yuv420p10le -s 480x360 -tune psnr -b:v 350k -tag:v hvc15 -metadata title=Animeplex -preset medium -c:s copy -map 0''
     # Get the audio channel codec
     audio_codec = get_codec(filepath, channel='a:0')
     if audio_codec == []:
@@ -44,7 +44,7 @@ def encode(filepath):
     elif audio_codec[0] == 'aac':
         audio_opts = '-c:a copy -map 0:a? -map_metadata 0'
     else:
-        audio_opts = '-c:a libfdk_aac -profile:a aac_he_v2 -ac 2 -ab 55k -vbr 3'
+        audio_opts = '-c:a aac -b:a 60k -map 0:a? -map_metadata 0'
     call(['ffmpeg', '-i', filepath] + video_opts.split() + audio_opts.split() + [output_filepath])
     
     return output_filepath
@@ -76,4 +76,4 @@ def get_width_height(filepath):
     if metadata.has("width") and metadata.has("height"):
       return metadata.get("width"), metadata.get("height")
     else:
-      return 854, 480
+      return 480, 360
