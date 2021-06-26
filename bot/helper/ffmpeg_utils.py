@@ -36,7 +36,7 @@ def encode(filepath):
             video_opts = '-c:v copy -tag:v hvc1'
     else:
         # Transcode to h265 / hvc1
-        video_opts = 'c:v libx265 -crf 28 -pix_fmt yuv420p10le -s 854x480 -tune psnr -b:v 350k -tag:v hvc15 -metadata title=Animeplex -preset medium -c:s copy -map 0'
+        video_opts = 'c:v libx265 -crf 28 -pix_fmt yuv420p10le -s 854x480 -tag:v hvc15 -metadata title=Animeplex -preset medium -c:s copy -map 0'
     # Get the audio channel codec
     audio_codec = get_codec(filepath, channel='a:0')
     if audio_codec == []:
