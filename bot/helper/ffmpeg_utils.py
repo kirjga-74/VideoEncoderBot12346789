@@ -76,4 +76,4 @@ def get_width_height(filepath):
     if metadata.has("width") and metadata.has("height"):
       return metadata.get("width"), metadata.get("height")
     else:
-      return 1280, 720
+      return 854, 480
